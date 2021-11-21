@@ -14,15 +14,20 @@ fun main() {
     val h = 0.005
     var t = 298.0
     var j = 0.0
+    val leftAlignFormat = "%10s |"
+    val jsc = 35
+    val j0Initial = 0.0025
+    val vt = 0.0385
+
     val space = "          "
     val spaceJ0 = "         "
+
     print("${space}U|")
     print("${space}J|")
     print("${spaceJ0}J0|")
     print("${space}P|")
     print("${space}T|")
     println()
-    val leftAlignFormat = "%10s |"
     while (j >= 0) {
         val context = MathContext(3, RoundingMode.HALF_UP)
         val resultU = u.toBigDecimal().round(context)
@@ -37,21 +42,21 @@ fun main() {
         System.out.format(leftAlignFormat, resultP)
         System.out.format(leftAlignFormat, resultT)
         u += h
-        j = 35 - 0.0025 * (exp(u / 0.038) - 1)
+        j = jsc - j0Initial * (exp(u / vt) - 1)
         p = j * u
         t++
-        j0 = 35 - 0.0025 * (exp(0.0036 / (2.15e-4 * t)) - 1)
+        j0 = jsc - j0Initial * (exp(0.0036 / (2.15e-4 * t)) - 1)
         println()
         us.add(u)
     }
     val functionJ: (Double) -> Number = {
-        35 - 0.0025 * (exp(it / 0.038) - 1)
+        jsc - j0Initial * (exp(it / vt) - 1)
     }
     val functionT: (Double) -> Number = {
         t++
     }
     val functionP: (Double) -> Number = {
-        val temp = 35 - 0.0025 * (exp(it / 0.038) - 1)
+        val temp = jsc - j0Initial * (exp(it / vt) - 1)
         it * temp
     }
     drawFunction(
