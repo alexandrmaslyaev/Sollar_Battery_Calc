@@ -14,7 +14,6 @@ fun main() {
     val h = 0.005
     var t = 298.0
     var j = 0.0
-    val leftAlignFormat = "%10s |"
     val jsc = 35
     val j0Initial = 0.0025
     val vt = 0.0385
@@ -36,7 +35,7 @@ fun main() {
 
     while (j >= 0) {
         val context = MathContext(3, RoundingMode.HALF_UP)
-        printResults(u, context, j, j0, p, t, leftAlignFormat)
+        printResults(u, context, j, j0, p, t)
         u += h
         j = functionJ(u).toDouble()
         p = functionP(u).toDouble()
@@ -87,8 +86,9 @@ private fun printResults(
     j0: Double,
     p: Double,
     t: Double,
-    leftAlignFormat: String
 ) {
+    val leftAlignFormat = "%10s |"
+
     val resultU = u.toBigDecimal().round(context)
     val resultJ = j.toBigDecimal().round(context)
     val resultJ0 = j0.toBigDecimal().round(context)
@@ -107,7 +107,6 @@ private fun printResults(
 private fun printTableHeader() {
     val space = "          "
     val spaceJ0 = "         "
-
     print("${space}U|")
     print("${space}J|")
     print("${spaceJ0}J0|")
