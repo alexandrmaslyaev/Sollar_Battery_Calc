@@ -1,4 +1,4 @@
-package ideal
+package CW.ideal
 
 import kotlin.math.abs
 import kotlin.math.exp
