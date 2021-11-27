@@ -114,25 +114,3 @@ private fun printTableHeader() {
     print("${space}T|")
     println()
 }
-
-@UnstablePlotlyAPI
-private fun drawFunction(
-    xs: Iterable<Number>,
-    function: (Double) -> Number,
-    functionName: String,
-    xAxisName: String,
-    yAxisName: String,
-) {
-    val plot = Plotly.plot {
-        trace {
-            functionXY(xs, function)
-            name = functionName
-        }
-        layout {
-            title = functionName
-            xaxis { title = xAxisName }
-            yaxis { title = yAxisName }
-        }
-    }
-    plot.makeFile()
-}
