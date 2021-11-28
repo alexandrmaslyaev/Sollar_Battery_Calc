@@ -1,9 +1,7 @@
-import space.kscience.plotly.*
-import space.kscience.plotly.models.functionXY
+import space.kscience.plotly.UnstablePlotlyAPI
 import java.math.MathContext
 import java.math.RoundingMode
 import kotlin.math.exp
-
 
 @UnstablePlotlyAPI
 fun main() {
@@ -58,22 +56,19 @@ private fun drawFunctions(
 ) {
     drawFunction(
         xs = us,
-        function = functionJ,
-        functionName = "Зависимость тока от напряжения",
+        functions = listOf(Pair(functionJ, "Зависимость тока от напряжения")),
         xAxisName = "Напряжение (U)",
         yAxisName = "Ток (J)"
     )
     drawFunction(
         xs = us,
-        function = functionT,
-        functionName = "Зависимость температуры от напряжения",
+        functions = listOf(Pair(functionT, "Зависимость температуры от напряжения")),
         xAxisName = "Напряжение (U)",
         yAxisName = "Температура (T)"
     )
     drawFunction(
         xs = us,
-        function = functionP,
-        functionName = "Зависимость мощности от напряжения",
+        functions = listOf(Pair(functionP, "Зависимость мощности от напряжения")),
         xAxisName = "Напряжение (U)",
         yAxisName = "Мощность (P)"
     )

@@ -58,10 +58,7 @@ fun printInterpolEpsilon(
 
     drawFunction(
         xs = x2,
-        function = functionForReal,
-        function2 = funForImg,
-        functionName = "Real $name",
-        functionName2 = "Ideal $name",
+        functions = listOf(Pair(functionForReal, "Real $name"), Pair(funForImg, "Ideal $name")),
         funTitle = "Epsilon graph $name"
     )
 }
@@ -90,10 +87,7 @@ fun printInterpolNPart(
     }
     drawFunction(
         xs = x2,
-        function = functionForReal,
-        function2 = funForImg,
-        functionName = "Real $name",
-        functionName2 = "Ideal $name",
+        functions = listOf(Pair(functionForReal, "Real $name"), Pair(funForImg, "Ideal $name")),
         funTitle = "N graph $name"
     )
 }
