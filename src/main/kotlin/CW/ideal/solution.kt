@@ -9,21 +9,23 @@ fun main() {
     var u = 0.0
     var j0 = 0.0
     var p = 0.0
-    val h = 0.005
+    val h = 0.0005
     var t = 298.0
     var j = 0.0
     val jsc = 35
-    val j0Initial = 0.0025
-    val vt = 0.0385
+    val j0Initial = 25E-3
+    val m = 1.5
+    val kb = 1.38E-23
+    val e = 1.6E-19
 
     printTableHeader()
 
     val functionJ: (Double) -> Number = {
-        jsc - j0Initial * (exp(it / vt) - 1)
+        jsc - j0Initial * (exp((it * e) / (m * kb * t)) - 1)
     }
 
     val functionP: (Double) -> Number = {
-        val temp = jsc - j0Initial * (exp(it / vt) - 1)
+        val temp = jsc - j0Initial * (exp((it * e) / (m * kb * t)) - 1)
         it * temp
     }
 
@@ -60,12 +62,12 @@ private fun drawFunctions(
         xAxisName = "Напряжение (U)",
         yAxisName = "Ток (J)"
     )
-    drawFunction(
+    /*drawFunction(
         xs = us,
         functions = listOf(Pair(functionT, "Зависимость температуры от напряжения")),
         xAxisName = "Напряжение (U)",
         yAxisName = "Температура (T)"
-    )
+    )*/
     drawFunction(
         xs = us,
         functions = listOf(Pair(functionP, "Зависимость мощности от напряжения")),
