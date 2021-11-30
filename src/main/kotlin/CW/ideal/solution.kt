@@ -20,6 +20,10 @@ fun main() {
 
     printTableHeader()
 
+    fun functionJWithM(currentM: Double): (Double) -> Number = {
+        jsc - j0Initial * (exp((it * e) / (currentM * kb * t)) - 1)
+    }
+
     val functionJ: (Double) -> Number = {
         jsc - j0Initial * (exp((it * e) / (m * kb * t)) - 1)
     }
@@ -46,14 +50,30 @@ fun main() {
 
     us.removeLast()
 
-    drawFunctions(us, functionJ, functionT, functionP)
+    drawFunction(
+        xs = us,
+        functions = listOf(
+            Pair(functionJWithM(1.5), "m = 1.5"),
+            Pair(functionJWithM(1.6), "m = 1.6"),
+            Pair(functionJWithM(1.7), "m = 1.7"),
+            Pair(functionJWithM(1.8), "m = 1.8"),
+            Pair(functionJWithM(1.9), "m = 1.9"),
+            Pair(functionJWithM(2.0), "m = 2.0"),
+            Pair(functionJWithM(2.1), "m = 2.1"),
+            Pair(functionJWithM(2.2), "m = 2.2"),
+            Pair(functionJWithM(2.3), "m = 2.3"),
+            Pair(functionJWithM(2.4), "m = 2.4"),
+            Pair(functionJWithM(2.5), "m = 2.5")
+        )
+    )
+
+    drawFunctions(us, functionJ, functionP)
 }
 
 @UnstablePlotlyAPI
 private fun drawFunctions(
     us: MutableList<Double>,
     functionJ: (Double) -> Number,
-    functionT: (Double) -> Number,
     functionP: (Double) -> Number
 ) {
     drawFunction(
@@ -62,12 +82,6 @@ private fun drawFunctions(
         xAxisName = "Напряжение (U)",
         yAxisName = "Ток (J)"
     )
-    /*drawFunction(
-        xs = us,
-        functions = listOf(Pair(functionT, "Зависимость температуры от напряжения")),
-        xAxisName = "Напряжение (U)",
-        yAxisName = "Температура (T)"
-    )*/
     drawFunction(
         xs = us,
         functions = listOf(Pair(functionP, "Зависимость мощности от напряжения")),
