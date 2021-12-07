@@ -1,5 +1,6 @@
 package euler
 
+import drawFunction
 import java.math.MathContext
 import java.math.RoundingMode
 import kotlin.math.abs
@@ -37,9 +38,13 @@ fun main() {
         erel1[index] = abs((fex(z[index]) - yel1[index]) / fex(z[index]))
         println("${x[index].bigDecimal()}    ${yel1[index].bigDecimal()}    ${erel[index].bigDecimal()}")
     }
-    println("X Yel1 error(el)")
+    println("er")
     for (index in 1 until 20) {
-        println("${z[2 * index].bigDecimal()}    ${erel1[2 * index].bigDecimal() / erel[index].bigDecimal()}")
+        println("${erel[2 * index].bigDecimal()}")
+    }
+    println("er1")
+    for (index in 1 until 20) {
+        println("${erel1[2 * index].bigDecimal()}")
     }
 }
 
