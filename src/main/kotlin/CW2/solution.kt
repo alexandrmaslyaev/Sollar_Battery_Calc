@@ -10,12 +10,12 @@ fun main() {
     val b = Array(300) { 0.0 }
 
     val tol = 0.001 // точность
-    val e = 0.8
-    val h = 0.1;
-    b[0] = 0.0
+    val e = 1.5
+    val h = 0.1
+    b[0] = 1.0
     t[0] = 0.0 //начальные условия
 
-    for (i in 1 until 200) { // организация улучшенного метода Эйлера
+    for (i in 1 until 200) {
         x = b[i - 1] + h * calc(b[i - 1], e)
         b[i] = b[i - 1] + (h / 2) * (calc(b[i - 1], e) + calc(x, e))
         t[i] = t[i - 1] + i * h
